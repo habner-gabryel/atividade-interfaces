@@ -88,10 +88,108 @@ Demonstração procedural (puramente educativo):
 1. ❌ **Cliente muda ao adicionar novo modo** (recompilação necessária)
 2. ❌ **Ramificações espalhadas** (`else if` sequenciais em método único)
 3. ❌ **Testes combinatórios** (4 modos × N tamanhos = N×4 cenários)
-4. ❌ **Acoplamento ao "como"** (função conhece detalhes de cada modo)
 5. ❌ **Duplicação** (validação de entrada, normalização de modo)
 
 ### Artefatos
 - Análise conceitual: [`docs/arquitetura/fase-02-mapa.md`](docs/arquitetura/fase-02-mapa.md)
 - Código procedural (referência): `src/fase-02-procedural/TextFormatterProcedural.cs`
 - Guia de navegação: [`src/fase-02-procedural/README.md`](src/fase-02-procedural/README.md)
+
+---
+
+## Fase 3 — OO sem Interface (Herança + Polimorfismo)
+
+**Tema:** Hierarquia Polimórfica de Formatadores de Texto
+
+### **Transformação da Fase 2**
+Substituímos a função procedural com `if/switch` por uma hierarquia orientada a objetos:
+- **Classe base abstrata:** `TextFormatterBase` (ritual comum)
+- **Subclasses concretas:** `UpperCaseFormatter`, `LowerCaseFormatter`, `TitleCaseFormatter`, `DefaultFormatter`, `PassthroughFormatter`
+- **Padrão:** Template Method + Polimorfismo
+
+### Hierarquia de Classes
+```
+TextFormatterBase (abstrato)
+├─ Format(text)      ← Ritual comum
+└─ Apply(text)       ← Gancho abstrato
+    ↓
+    ├─ UpperCaseFormatter
+    ├─ LowerCaseFormatter
+    ├─ TitleCaseFormatter
+    ├─ DefaultFormatter
+    └─ PassthroughFormatter
+```
+
+### Como o Polimorfismo Substitui Decisões
+
+**Antes (Fase 2 — Procedural):**
+```csharp
+// ❌ if/else DENTRO do fluxo
+if (mode == "UPPER") return text.ToUpper();
+else if (mode == "LOWER") return text.ToLower();
+else if (mode == "TITLE") return ToTitleCase(text);
+else return DefaultFormat(text);
+```
+
+**Depois (Fase 3 — Polimorfismo):**
+```csharp
+// ✅ Switch APENAS para escolher qual classe usar
+TextFormatterBase formatter = mode switch
+{
+    "UPPER" => new UpperCaseFormatter(),
+    "LOWER" => new LowerCaseFormatter(),
+    _ => new PassthroughFormatter()
+};
+
+// ✅ Fluxo é LINEAR: sem if/else, apenas delegação polimórfica
+return formatter.Format(text);
+```
+
+### Exemplo: Classe Base
+```csharp
+public abstract class TextFormatterBase
+{
+    public string Format(string text)
+    {
+        if (string.IsNullOrWhiteSpace(text))
+            return "";
+        
+        return Apply(text);  // ← Delegação polimórfica
+    }
+
+    protected abstract string Apply(string text);  // Gancho variável
+}
+
+public sealed class UpperCaseFormatter : TextFormatterBase
+{
+    protected override string Apply(string text) 
+        => text?.ToUpperInvariant() ?? "";
+}
+```
+
+### Responsabilidades
+
+| Classe | Responsabilidade |
+|--------|------------------|
+| `TextFormatterBase` | Orquestar o ritual (`Format`), definir gancho (`Apply`) |
+| `UpperCaseFormatter`, `LowerCaseFormatter`, etc. | Implementar apenas o passo variável (`Apply`) |
+| `FormatterClient` | Escolher qual concreta usar (ainda via switch) |
+
+### Análise: Melhorou vs. Ainda Rígido
+
+#### ✅ MELHOROU
+1. **Remoção de if/switch do fluxo central** → leitura clara
+2. **Coesão por variação** → cada classe é simples e focada
+3. **Testes isolados** → testar `UpperCaseFormatter` independente
+4. **Novo modo sem alterar fluxo** → criar nova classe, não mexer em método existente
+
+#### ⚠️ AINDA FICOU RÍGIDO
+1. **Cliente AINDA conhece concretos** → `new UpperCaseFormatter()` explícito
+2. **Composição dispersa** → switch está no cliente, não centralizado
+3. **Sem contrato estável** → sem interface, difícil testar com dublês
+4. **Extensibilidade limitada** → novo modo exige recompilação do cliente
+
+### Artefatos
+- Mapa com diagrama, código e análise: [`docs/arquitetura/fase-03-mapa.md`](docs/arquitetura/fase-03-mapa.md)
+- Implementação completa: `src/fase-03-oo-sem-interface/TextFormatterPolymorphic.cs`
+- Guia de navegação: [`src/fase-03-oo-sem-interface/README.md`](src/fase-03-oo-sem-interface/README.md)
