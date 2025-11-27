@@ -207,6 +207,21 @@ Propor duas interfaces do domínio de formatação e demonstrar uma classe que i
 - Código de referência: `src/fase-05-essenciais-interfaces/InterfacesEssentials.cs`
 - Guia de navegação: `src/fase-05-essenciais-interfaces/README.md`
 
+---
+
+## Fase 6 — ISP na prática (Segregação por Capacidade)
+
+**Tema:** Segregar uma "god interface" em contratos coesos e ajustar consumidores
+
+### Objetivo
+Dado um contrato multifuncional, extrair interfaces coesas e mostrar o impacto no consumidor (antes/depois), sinais de ocorrência e ganhos.
+
+### Onde encontrar
+- Documento: [`docs/arquitetura/fase-06-mapa.md`](docs/arquitetura/fase-06-mapa.md)
+- Código: `src/fase-06-isp/ISPExample.cs`
+- Guia: `src/fase-06-isp/README.md`
+
+
 
 ## Fase 4 — Interface Plugável e Testável
 
