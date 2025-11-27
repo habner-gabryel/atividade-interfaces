@@ -276,3 +276,17 @@ Evoluir de CSV para JSON como formato de persistência, mantendo o contrato `IRe
 - Código: `src/fase-09-repository/JsonRepository.cs`
 - Documento: `docs/arquitetura/fase-09-mapa.md`
 - Guia: `src/fase-09-repository/README.md`
+
+---
+
+## Fase 10 — Testabilidade: Dublês e Costuras
+
+**Tema:** Planejar testes sem I/O usando dublês adequados e costuras (Seams)
+
+### Objetivo
+Demonstrar como testar componentes que dependem de repositórios sem executar operações reais de I/O. Usar dublês (Dummy, Stub, Mock, Spy, Fake) injetados via construtor e explorar "costuras" (Seams) que permitem trocar implementações sem alterar código.
+
+### Onde encontrar
+- Código: `src/fase-10-testability/TestabilityExamples.cs`
+- Documento: `docs/arquitetura/fase-10-mapa.md`
+- Guia: `src/fase-10-testability/README.md`
