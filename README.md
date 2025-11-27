@@ -234,3 +234,45 @@ Definir um contrato claro (`ITextFormatter`) e refatorar o cliente para depender
 - Documento explicativo: [`docs/arquitetura/fase-04-mapa.md`](docs/arquitetura/fase-04-mapa.md)
 - Código de referência: `src/fase-04-oo-com-interface/TextFormatterInterface.cs`
 - Guia de navegação: `src/fase-04-oo-com-interface/README.md`
+
+---
+
+## Fase 7 — Repository progressivo (InMemory)
+
+**Tema:** Repositório genérico em memória + serviço desacoplado
+
+### Objetivo
+Modelar um repositório em memória (`InMemoryRepository<T>`) com contrato `IRepository<T>` e demonstrar como um serviço (`MovieService`) consome esse contrato sem conhecer detalhes da implementação.
+
+### Onde encontrar
+- Código: `src/fase-07-repository/InMemoryRepository.cs`
+- Documento: `docs/arquitetura/fase-07-mapa.md`
+- Guia: `src/fase-07-repository/README.md`
+
+---
+
+## Fase 8 — Repository progressivo (CSV)
+
+**Tema:** Persistência simples em CSV mantendo contrato `IRepository<T>`
+
+### Objetivo
+Evoluir a implementação de repositório em memória para uma versão que persista em arquivo CSV, sem alterar o contrato usado pelo cliente. Demonstrar leitura/escrita, tratamento de arquivo inexistente e por que o cliente permanece inalterado ao trocar a implementação.
+
+### Onde encontrar
+- Código: `src/fase-08-repository/CsvRepository.cs`
+- Documento: `docs/arquitetura/fase-08-mapa.md`
+- Guia: `src/fase-08-repository/README.md`
+
+---
+
+## Fase 9 — Repository progressivo (JSON)
+
+**Tema:** Persistência com JSON mantendo contrato `IRepository<T>`
+
+### Objetivo
+Evoluir de CSV para JSON como formato de persistência, mantendo o contrato `IRepository<T>` inalterado. Demonstrar ida/volta (serialização/desserialização), mutações seguras e o ponto único de composição que permite trocar CSV→JSON sem alterar o cliente.
+
+### Onde encontrar
+- Código: `src/fase-09-repository/JsonRepository.cs`
+- Documento: `docs/arquitetura/fase-09-mapa.md`
+- Guia: `src/fase-09-repository/README.md`
