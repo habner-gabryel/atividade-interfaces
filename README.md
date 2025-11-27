@@ -193,3 +193,29 @@ public sealed class UpperCaseFormatter : TextFormatterBase
 - Mapa com diagrama, código e análise: [`docs/arquitetura/fase-03-mapa.md`](docs/arquitetura/fase-03-mapa.md)
 - Implementação completa: `src/fase-03-oo-sem-interface/TextFormatterPolymorphic.cs`
 - Guia de navegação: [`src/fase-03-oo-sem-interface/README.md`](src/fase-03-oo-sem-interface/README.md)
+
+
+## Fase 5 — Essenciais de Interfaces em C#
+
+**Tema:** Duas interfaces do domínio e uma classe que implementa ambas
+
+### Objetivo
+Propor duas interfaces do domínio de formatação e demonstrar uma classe que implementa ambas, além de explicar implementação explícita, generics com constraints e default members.
+
+### Onde encontrar
+- Documento de análise: [`docs/arquitetura/fase-05-mapa.md`](docs/arquitetura/fase-05-mapa.md)
+- Código de referência: `src/fase-05-essenciais-interfaces/InterfacesEssentials.cs`
+- Guia de navegação: `src/fase-05-essenciais-interfaces/README.md`
+
+
+## Fase 4 — Interface Plugável e Testável
+
+**Tema:** Contrato estável (`ITextFormatter`) + Injeção de dependência
+
+### Objetivo
+Definir um contrato claro (`ITextFormatter`) e refatorar o cliente para depender dele. Demonstrar como alternar implementações sem mudar o cliente e como injetar dublês em testes.
+
+### Onde encontrar
+- Documento explicativo: [`docs/arquitetura/fase-04-mapa.md`](docs/arquitetura/fase-04-mapa.md)
+- Código de referência: `src/fase-04-oo-com-interface/TextFormatterInterface.cs`
+- Guia de navegação: `src/fase-04-oo-com-interface/README.md`
