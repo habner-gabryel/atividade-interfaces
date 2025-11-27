@@ -290,3 +290,22 @@ Demonstrar como testar componentes que dependem de repositórios sem executar op
 - Código: `src/fase-10-testability/TestabilityExamples.cs`
 - Documento: `docs/arquitetura/fase-10-mapa.md`
 - Guia: `src/fase-10-testability/README.md`
+
+---
+
+## Fase 11 — Cheiros e Antídotos
+
+**Tema:** Identificar code smells em fases anteriores e descrever refatorações
+
+### Objetivo
+Analisar padrões problemáticos encontrados em fases anteriores e mostrar como eliminar acoplamento, duplicação e rigidez através de refatoração cuidadosa. Cada cheiro é ilustrado com antes/depois e a motivação por trás do antídoto.
+
+### Dois cheiros principais
+
+1. **God Interface (Fase 4 → Fase 6):** interface com múltiplas responsabilidades → ISP (Interface Segregation)
+2. **Composição Espalhada (Fase 3 → Fase 4):** switch duplicado em clientes → Factory Pattern (decisão centralizada)
+
+### Onde encontrar
+- Código: `src/fase-11-code-smells/CodeSmellsAndAntidotes.cs`
+- Documento: `docs/arquitetura/fase-11-mapa.md`
+- Guia: `src/fase-11-code-smells/README.md`
